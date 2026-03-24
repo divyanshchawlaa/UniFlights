@@ -3,7 +3,7 @@
 UniFlights is a student-focused flight comparison web application that allows users to search flights, filter results, save flights, and access travel options with a clean interface.  
 The project is built using React, Node.js, Express, PostgreSQL, and JWT authentication.
 
-This project was developed as part of a university Software Engineering / Web Development assignment.
+This project was developed as part of a university Software Engineering assignment.
 
 ---
 
@@ -24,30 +24,32 @@ This project was developed as part of a university Software Engineering / Web De
 
 ## 🛠️ Tech Stack
 
-Frontend:
+### Frontend
 - React
 - CSS
 - Axios
 - React Router
 
-Backend:
+### Backend
 - Node.js
 - Express.js
 - PostgreSQL
 - JWT
 - bcrypt
 
-Mobile:
+### Mobile
 - Capacitor
 - Android Studio
 
-Deployment:
+### Deployment
 - Vercel (frontend)
 - Render (backend)
 
 ---
 
 ## 📁 Project Structure
+
+```
 UNIFLIGHTS-PROJECT
 ├── uniflights-backend
 │   ├── controllers
@@ -67,42 +69,67 @@ UNIFLIGHTS-PROJECT
 │   └── android
 │
 └── README.md
+```
 
 ---
 
 ## Installation Guide
 
 ### Clone Repository
-git clone https://github.com/yourusername/uniflights-project.git
+
+```
+git clone https://github.com/divyanshchawlaa/UniFlights.git
+```
 
 ---
 
 ### Install Frontend
+
+```
 cd uniflights-frontend
 npm install
 npm start
+```
+
 Frontend runs on:
+
+```
 http://localhost:3000
+```
 
 ---
 
 ### Install Backend
+
+```
 cd uniflights-backend
 npm install
 node app.js
+```
+
 Backend runs on:
+
+```
 http://localhost:8000
+```
 
 ---
 
 ## Environment Variables
 
 Create a file named `.env` inside the backend folder.
+
+```
 PORT=8000
 JWT_SECRET=mysecretkey
 DATABASE_URL=your_postgres_connection
+```
+
 Example PostgreSQL URL:
-postgres://user:password@localhost:5433/uniflights
+
+```
+postgres://user:password@localhost:5433/uniflighs
+```
 
 ---
 
@@ -115,11 +142,14 @@ Tables used in PostgreSQL:
 - universities
 
 Example table:
+
+```
 CREATE TABLE users (
-id SERIAL PRIMARY KEY,
-email TEXT,
-password TEXT
+  id SERIAL PRIMARY KEY,
+  email TEXT,
+  password TEXT
 );
+```
 
 ---
 
@@ -130,13 +160,18 @@ password TEXT
 - Protected routes with middleware
 
 Example header:
+
+```
 Authorization: Bearer TOKEN
+```
 
 ---
 
 ## Android APK Build
 
 Steps:
+
+```
 cd uniflights-frontend
 
 npm run build
@@ -148,11 +183,19 @@ npx cap init
 npx cap add android
 npx cap copy
 npx cap open android
+```
 
 In Android Studio:
+
+```
 Build → Build APK(s)
+```
+
 APK location:
+
+```
 android/app/build/outputs/apk/debug/app-debug.apk
+```
 
 ---
 
@@ -163,11 +206,14 @@ Backend deployed using Render
 
 Steps:
 
-1. Push project to GitHub
-2. Deploy frontend on Vercel
-3. Deploy backend on Render
+1. Push project to GitHub  
+2. Deploy frontend on Vercel  
+3. Deploy backend on Render  
 4. Update API URL in
+
+```
 src/api.js
+```
 
 ---
 
@@ -200,7 +246,7 @@ This project was developed for academic submission to demonstrate:
 - Deployment
 - Mobile packaging
 
-The flight data may be mocked or provided by public APIs.
+The flight data may be mocked or provided by public APIs.  
 No real payment system is included.
 
 ---
