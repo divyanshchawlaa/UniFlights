@@ -1,54 +1,103 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./FlightSearch.css";
 
 export default function SavedFlights() {
 
-  const [flights,setFlights] = useState([]);
+  const [list, setList] = useState([]);
 
-  useEffect(()=>{
+  const logos = {
+
+    Lufthansa:
+      "https://logo.clearbit.com/lufthansa.com",
+
+    Emirates:
+      "https://logo.clearbit.com/emirates.com",
+
+    "Air India":
+      "https://logo.clearbit.com/airindia.com",
+
+    KLM:
+      "https://logo.clearbit.com/klm.com",
+
+    "British Airways":
+      "https://logo.clearbit.com/britishairways.com",
+
+    "Air France":
+      "https://logo.clearbit.com/airfrance.com"
+
+  };
+
+
+  useEffect(() => {
 
     const load = async () => {
 
-      const token =
-        localStorage.getItem("token");
-
       const res = await axios.get(
-
-        "http://localhost:8000/api/bookings",
-
-        {
-          headers:{
-            Authorization:
-              `Bearer ${token}`
-          }
-        }
-
+        "http://localhost:8000/api/bookings/all"
       );
 
-      setFlights(res.data);
+      setList(res.data);
 
     };
 
     load();
 
-  },[]);
+  }, []);
 
 
   return (
 
-    <div>
+    <div className="main-layout">
 
       <h2>Saved Flights</h2>
 
-      {flights.map(f => (
+      <div className="content">
 
-        <div key={f.id}>
+        <div className="results">
 
-          {f.airline} - ${f.price}
+          {list.map((f, i) => (
+
+            <div
+              key={i}
+              className="flight-card"
+            >
+
+              <img
+                src={logos[f.airline]}
+                alt=""
+                width="50"
+              />
+
+              <h3>{f.airline}</h3>
+
+              <p>${f.price}</p>
+
+              <p>Passengers: {f.passengers}</p>
+
+              <p>Class: {f.travelClass}</p>
+
+              <p>Depart: {f.departDate}</p>
+
+              {f.returnDate && (
+                <p>Return: {f.returnDate}</p>
+              )}
+
+              <a
+                href={f.link}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Book
+              </a>
+
+            </div>
+
+          ))}
 
         </div>
 
-      ))}
+      </div>
 
     </div>
 

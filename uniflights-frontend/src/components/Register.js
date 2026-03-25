@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { registerUser } from "../api";
 
 export default function Register() {
 
@@ -9,16 +9,20 @@ export default function Register() {
 
   const handleRegister = async () => {
 
-    await axios.post(
-      "http://localhost:8000/api/auth/register",
-      {
+    try {
+
+      await registerUser({
         name,
         email,
         password
-      }
-    );
+      });
 
-    alert("Registered");
+      alert("Registered");
+
+    } catch (err) {
+      console.log(err);
+      alert("Register error");
+    }
 
   };
 

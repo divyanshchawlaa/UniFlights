@@ -8,17 +8,23 @@ export default function Login() {
 
   const handleLogin = async () => {
 
-    const data = await loginUser({
-      email,
-      password
-    });
+    try {
 
-    localStorage.setItem(
-      "token",
-      data.token
-    );
+      const data = await loginUser({
+        email,
+        password
+      });
 
-    alert("Logged in");
+      localStorage.setItem("token", data.token);
+
+      alert("Logged in");
+
+    } catch (err) {
+
+      console.log(err);
+      alert("Login failed");
+
+    }
 
   };
 

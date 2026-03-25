@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">UniFlights</string>
+    <string name="title_activity_main">UniFlights</string>
+    <string name="package_name">com.uniflights.app</string>
+    <string name="custom_url_scheme">com.uniflights.app</string>
+</resources>

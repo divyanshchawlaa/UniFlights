@@ -7,19 +7,29 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
+// ROUTES
+console.log("APP START");
+
 const authRoutes = require("./routes/authRoutes");
 const flightRoutes = require("./routes/flightRoutes");
-const bookingRoutes = require("./routes/bookingRoutes");
+const bookingRoutes = require("./routes/bookingRoutes.js");
+
+console.log("BOOKING IMPORT DONE");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/flights", flightRoutes);
 app.use("/api/bookings", bookingRoutes);
 
+
+// TEST
+
 app.get("/", (req, res) => {
-  res.send("UniFlights backend running");
+  res.send("Backend running");
 });
 
-const PORT = process.env.PORT || 8000;
+
+const PORT = 8000;
 
 app.listen(PORT, () => {
   console.log("Server running on", PORT);

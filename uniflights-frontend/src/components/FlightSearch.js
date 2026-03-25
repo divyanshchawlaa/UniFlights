@@ -4,7 +4,7 @@ import "./FlightSearch.css";
 
 export default function FlightSearch() {
 
-  const [tripType,setTripType] = useState("one");
+  const [tripType,setTripType] = useState("oneway");
 
   const [from,setFrom] = useState("");
   const [to,setTo] = useState("");
@@ -37,30 +37,48 @@ export default function FlightSearch() {
       "https://logo.clearbit.com/klm.com",
 
     "British Airways":
-      "https://logo.clearbit.com/britishairways.com"
+      "https://logo.clearbit.com/britishairways.com",
+
+    "Air France":
+      "https://logo.clearbit.com/airfrance.com",
+
+    "Qatar Airways":
+      "https://logo.clearbit.com/qatarairways.com"
 
   };
 
+
+  // SEARCH
 
   const handleSearch = async () => {
 
-    const data = await searchFlights({
+    try {
 
-      from,
-      to,
-      departDate,
-      returnDate,
-      tripType,
-      passengers,
-      travelClass
+      const data = await searchFlights({
 
-    });
+        from,
+        to,
+        departDate,
+        returnDate,
+        tripType,
+        passengers: Number(passengers),
+        travelClass
 
-    setFlights(data);
-    setFiltered(data);
+      });
+
+      setFlights(data);
+      setFiltered(data);
+
+    } catch (err) {
+
+      console.log(err);
+
+    }
 
   };
 
+
+  // FILTER
 
   const applyFilter = () => {
 
@@ -82,6 +100,8 @@ export default function FlightSearch() {
 
   };
 
+
+  // SAVE
 
   const handleSave = (f) => {
 
@@ -117,8 +137,8 @@ export default function FlightSearch() {
       <div className="search-bar">
 
         <button
-          className={tripType==="one"?"active":""}
-          onClick={()=>setTripType("one")}
+          className={tripType==="oneway"?"active":""}
+          onClick={()=>setTripType("oneway")}
         >
           One Way
         </button>
@@ -178,17 +198,9 @@ export default function FlightSearch() {
           onChange={e=>setTravelClass(e.target.value)}
         >
 
-          <option value="economy">
-            Economy
-          </option>
-
-          <option value="business">
-            Business
-          </option>
-
-          <option value="first">
-            First
-          </option>
+          <option value="economy">Economy</option>
+          <option value="business">Business</option>
+          <option value="first">First</option>
 
         </select>
 
@@ -235,6 +247,8 @@ export default function FlightSearch() {
             <option>Emirates</option>
             <option>Air India</option>
             <option>KLM</option>
+            <option>Air France</option>
+            <option>Qatar Airways</option>
 
           </select>
 
@@ -262,6 +276,7 @@ export default function FlightSearch() {
                 src={logos[f.airline]}
                 alt=""
                 width="50"
+                onError={(e)=>e.target.style.display="none"}
               />
 
               <h3>{f.airline}</h3>
